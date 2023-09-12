@@ -11,7 +11,7 @@ services:
       BCRYPT_SALT: ${BCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRATION: ${JWT_EXPIRATION}
-      DB_URL: "`sqlserver://db:1143;database=${DB_NAME};user=${DB_USER};password=${DB\
+      DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
         _PASSWORD}`"
     depends_on:
       - migrate
@@ -24,7 +24,7 @@ services:
     working_dir: /app/server
     environment:
       BCRYPT_SALT: ${BCRYPT_SALT}
-      DB_URL: "`sqlserver://db:1143;database=${DB_NAME};user=${DB_USER};password=${DB\
+      DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
         _PASSWORD}`"
     depends_on:
       db:
