@@ -1,0 +1,91 @@
+datasource db {
+  provider = "sqlserver"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 String         @id @default(cuid())
+  name               String         @unique @map("name")
+  bio                String
+  email              String
+  age                Int
+  birthDate          DateTime
+  score              Float
+  manager            User?          @relation(name: "employees", fields: [managerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  managerId          String?
+  employees          User[]         @relation(name: "employees")
+  organizations      Organization[]
+  interests          String
+  priority           String
+  isCurious          Boolean
+  location           String
+  extendedProperties String
+  profile            Profile?       @relation(fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  profileId          Int?           @unique
+
+  @@unique([name(sort: Desc), email])
+  @@index([name, email])
+  @@map("users")
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  createdIn DateTime @default(now())
+  createdAt DateTime
+  updatedIn DateTime @updatedAt
+  updatedAt DateTime
+  email     String
+  user      User?
+}
+
+model Order {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  customer   Customer @relation(fields: [customerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  customerId Int
+  status     String
+  label      String?
+}
+
+model Organization {
+  id           String     @id @default(cuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  name         String
+  users        User[]
+  customers    Customer[] @relation(name: "CustomersOnOrganization")
+  vipCustomers Customer[] @relation(name: "vipCustomers")
+}
+
+model Customer {
+  id                Int           @id @default(autoincrement())
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  email             String
+  firstName         String?
+  lastName          String?
+  isVip             Boolean?
+  birthData         DateTime?
+  averageSale       Decimal?
+  favoriteNumber    Int?
+  geoLocation       String?
+  comments          String?
+  favoriteColors    String?
+  customerType      String?
+  organization      Organization? @relation(name: "CustomersOnOrganization", fields: [organizationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  organizationId    String?
+  vipOrganization   Organization? @relation(name: "vipCustomers", fields: [vipOrganizationId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  vipOrganizationId String?
+  orders            Order[]
+}
+
+model Empty {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
