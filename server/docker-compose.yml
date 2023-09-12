@@ -12,7 +12,7 @@ services:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRATION: ${JWT_EXPIRATION}
       DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
-        _PASSWORD}`"
+        _PASSWORD};TrustServerCertificate=true`"
     depends_on:
       - migrate
   migrate:
@@ -25,7 +25,7 @@ services:
     environment:
       BCRYPT_SALT: ${BCRYPT_SALT}
       DB_URL: "`sqlserver://db:1433;database=${DB_NAME};user=${DB_USER};password=${DB\
-        _PASSWORD}`"
+        _PASSWORD};TrustServerCertificate=true`"
     depends_on:
       db:
         condition: service_healthy
