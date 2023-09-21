@@ -5,10 +5,10 @@ import { theme } from "./theme/theme";
 import Login from "./Login";
 import "./App.scss";
 import Dashboard from "./pages/Dashboard";
-import { PostList } from "./post/PostList";
-import { PostCreate } from "./post/PostCreate";
-import { PostEdit } from "./post/PostEdit";
-import { PostShow } from "./post/PostShow";
+import { OrderList } from "./order/OrderList";
+import { OrderCreate } from "./order/OrderCreate";
+import { OrderEdit } from "./order/OrderEdit";
+import { OrderShow } from "./order/OrderShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -36,11 +36,11 @@ const App = (): React.ReactElement => {
         loginPage={Login}
       >
         <Resource
-          name="Post"
-          list={PostList}
-          edit={PostEdit}
-          create={PostCreate}
-          show={PostShow}
+          name="Order"
+          list={OrderList}
+          edit={OrderEdit}
+          create={OrderCreate}
+          show={OrderShow}
         />
       </Admin>
     </div>

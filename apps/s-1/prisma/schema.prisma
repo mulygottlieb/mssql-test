@@ -7,14 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
+model Order {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()"))
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  title     String   @db.VarChar(255)
-  authorId  Int?
-  parent    Post?    @relation(name: "children", fields: [parentId], references: [id])
-  parentId  Int?
-  children  Post[]   @relation(name: "children")
+
+  @@map("order")
 }
