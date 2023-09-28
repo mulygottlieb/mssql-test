@@ -42,7 +42,12 @@
     "swagger-ui-express": "4.3.0",
     "ts-node": "10.9.1",
     "type-fest": "0.13.1",
-    "validator": "^13.9.0"
+    "validator": "^13.9.0",
+    "@nestjs/jwt": "^10.0.2",
+    "@nestjs/passport": "^9.0.0",
+    "passport": "0.6.0",
+    "passport-http": "0.3.0",
+    "passport-jwt": "4.0.1"
   },
   "devDependencies": {
     "@nestjs/cli": "8.2.5",
@@ -58,7 +63,9 @@
     "prisma": "4.6.1",
     "supertest": "4.0.2",
     "ts-jest": "27.0.3",
-    "typescript": "4.3.5"
+    "typescript": "4.3.5",
+    "@types/passport-http": "0.3.9",
+    "@types/passport-jwt": "3.0.8"
   },
   "jest": {
     "preset": "ts-jest",
