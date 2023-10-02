@@ -17,3 +17,11 @@ model User {
   password  String
   roles     Json
 }
+
+model Muly {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String?  @unique
+  pass      String?
+}
